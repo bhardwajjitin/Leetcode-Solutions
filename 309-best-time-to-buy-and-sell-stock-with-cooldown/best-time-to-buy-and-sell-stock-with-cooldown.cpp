@@ -20,16 +20,33 @@ public:
     //   bottom up
     vector<vector<int>>dp(n+2,vector<int>(2,0));
     // no need to initialise the base cases as it is already zero
+    // for(int ind=n-1;ind>=0;ind--){
+    //   for(int buy=0;buy<=1;buy++){
+    //     if(buy){
+    //         dp[ind][buy]=max(-prices[ind]+dp[ind+1][0],dp[ind+1][1]);
+    //     }
+    //     else{
+    //         dp[ind][buy]=max(prices[ind]+dp[ind+2][1],dp[ind+1][0]);
+    //     }
+    //   }
+    // }
+    // return dp[0][1];
+
+    // space optimisation
+    vector<int>prev(2,0),curr(2,0);
+    int prev1=0;
     for(int ind=n-1;ind>=0;ind--){
       for(int buy=0;buy<=1;buy++){
         if(buy){
-            dp[ind][buy]=max(-prices[ind]+dp[ind+1][0],dp[ind+1][1]);
+            curr[buy]=max(-prices[ind]+prev[0],prev[1]);
         }
         else{
-            dp[ind][buy]=max(prices[ind]+dp[ind+2][1],dp[ind+1][0]);
+            curr[buy]=max(prices[ind]+prev1,prev[0]);
         }
       }
+      prev1=prev[1];
+      prev=curr;
     }
-    return dp[0][1];
+    return prev[1];
     }
 };
