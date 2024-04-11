@@ -27,25 +27,48 @@ public:
         //     mini=min(mini,ans);
         // }
         // return mini;
-        vector<vector<int>>dp(row,vector<int>(col,0));
+        // vector<vector<int>>dp(row,vector<int>(col,0));
+        // for(int i=0;i<grid[row-1].size();i++){
+        //     dp[row-1][i]=grid[row-1][i];
+        // }
+        // for(int k=row-2;k>=0;k--){
+        //     for(int i=0;i<col;i++){
+        //      int mini=INT_MAX;
+        //     for(int j=0;j<col;j++){
+        //        if(j!=i){
+        //         int down=grid[k][i]+dp[k+1][j];
+        //         mini=min(mini,down);
+        //     }
+        //     }
+        //     dp[k][i]=mini;
+        //     }
+        // }
+        // int maxi=INT_MAX;
+        // for(int i=0;i<col;i++){
+        //     maxi=min(dp[0][i],maxi);
+        // }
+        // return maxi;
+        // space optimisation
+        vector<int>prev(col,0),curr(col,0);
         for(int i=0;i<grid[row-1].size();i++){
-            dp[row-1][i]=grid[row-1][i];
+            prev[i]=grid[row-1][i];
         }
         for(int k=row-2;k>=0;k--){
             for(int i=0;i<col;i++){
              int mini=INT_MAX;
             for(int j=0;j<col;j++){
                if(j!=i){
-                int down=grid[k][i]+dp[k+1][j];
+                int down=grid[k][i]+prev[j];
                 mini=min(mini,down);
             }
             }
-            dp[k][i]=mini;
+            curr[i]=mini;
             }
+            prev=curr;
         }
         int maxi=INT_MAX;
         for(int i=0;i<col;i++){
-            maxi=min(dp[0][i],maxi);
+            maxi=min(prev[i],maxi);
         }
         return maxi;
     }
