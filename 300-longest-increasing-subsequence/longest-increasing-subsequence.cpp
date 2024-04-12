@@ -31,7 +31,21 @@ public:
         // }
         // return dp[0][0];
         // space optimisation
-        vector<int>prev(n+1,0),curr(n+1,0);
+        // vector<int>prev(n+1,0),curr(n+1,0);
+        // for(int ind=n-1;ind>=0;ind--){
+        //     for(int ind1=ind-1;ind1>=-1;ind1--){
+        //         int inc=0;
+        //         int exc=prev[ind1+1];
+        //         if(ind1==-1 || nums[ind]>nums[ind1]){
+        //             inc=1+prev[ind+1];
+        //         }
+        //         curr[ind1+1]=max(inc,exc);
+        //     }
+        //     prev=curr;
+        // }
+        // return prev[0];
+        // more space optimisation
+        vector<int>prev(n+1,0);
         for(int ind=n-1;ind>=0;ind--){
             for(int ind1=ind-1;ind1>=-1;ind1--){
                 int inc=0;
@@ -39,9 +53,8 @@ public:
                 if(ind1==-1 || nums[ind]>nums[ind1]){
                     inc=1+prev[ind+1];
                 }
-                curr[ind1+1]=max(inc,exc);
+                prev[ind1+1]=max(inc,exc);
             }
-            prev=curr;
         }
         return prev[0];
     }
