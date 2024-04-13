@@ -19,9 +19,9 @@ public:
             q.erase(*q.begin());
             int node=it.second;
             int dist=it.first;
-            if(dist>=disappear[node]){
-                continue;
-            }
+            // if(dist>=disappear[node]){
+            //     continue;
+            // }
             for(auto temp:adj[node]){
                 int v=temp.first;
                 int wt=temp.second;
