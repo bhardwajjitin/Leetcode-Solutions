@@ -19,21 +19,16 @@ public:
           for(int i=0;i<4;i++){
             int nr=r+di[i];
             int nc=c+dj[i];
-            if(nr>=0 && nr<m && nc>=0 && nc<n && grid[nr][nc]!=prev){
-               flag=false;
-               break;
-            }
-          }
-          if(r==0 || c==0 || r==m-1 || c==n-1 || flag==false){
-            res.push_back({r,c});
-          }
-          for(int i=0;i<4;i++){
-            int nr=r+di[i];
-            int nc=c+dj[i];
             if(nr>=0 && nr<m && nc>=0 && nc<n && !vis[nr][nc] && grid[nr][nc]==prev){
               vis[nr][nc]=1;
               q.push({nr,nc});
             }
+            if(nr>=0 && nr<m && nc>=0 && nc<n && grid[nr][nc]!=prev){
+               flag=false;
+            }
+          }
+          if(r==0 || c==0 || r==m-1 || c==n-1 || flag==false){
+            res.push_back({r,c});
           }
         }
         for(int i=0;i<res.size();i++){
