@@ -18,10 +18,10 @@ public:
           while(!q.empty()){
             int top=q.front();
             q.pop();
-            unordered_map<int,int>umap;
+            set<int>st;
             for(auto it:adj[top]){
               if(flower[it-1]!=0){
-                umap[flower[it-1]]++;
+                st.insert(flower[it-1]);
               }
               if(!vis[it]){
                 vis[it]=1;
@@ -29,7 +29,7 @@ public:
               }
             }
             for(int i=1;i<=4;i++){
-              if(umap.find(i)==umap.end()){
+              if(st.find(i)==st.end()){
                 flower[top-1]=i;
               }
             }
