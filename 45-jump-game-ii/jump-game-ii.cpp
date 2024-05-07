@@ -15,8 +15,21 @@ class Solution {
 public:
     int jump(vector<int>& nums) {
         int n=nums.size();
-        vector<int>dp(n,-1);
-        int ans=solve(nums,0,n,dp);
-        return ans;
+        // vector<int>dp(n,-1);
+        // int ans=solve(nums,0,n,dp);
+        // return ans;
+        // bottom up
+      vector<int>dp(n,0);
+      for(int i=n-2;i>=0;i--){
+          int mini=1e5;
+          for(int step=0;step<=nums[i];step++){
+            if(i+step<n && i+step!=i){
+            int ans=1+dp[i+step];
+            mini=min(ans,mini);
+            }
+          }
+        dp[i]=mini;                  
+      }
+      return dp[0];
     }
 };
