@@ -1,15 +1,20 @@
 class Solution {
 public:
     int minMoves2(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        int midEle = nums[nums.size()/2] , midEle2 = nums[ceil(nums.size()/2.0)-1];
-        int ans1 = 0 , ans2 = 0;
-        cout<<midEle<<" "<<midEle2<<endl;
-        for(int i = 0 ; i < nums.size();i++){
-          ans1 += abs(nums[i]-midEle);
-          ans2 += abs(nums[i]-midEle2);
+      sort(nums.begin(),nums.end());
+      int mid;
+      if(nums.size()%2!=0){
+        mid=nums.size()/2;
+      }
+      else{
+        mid=(nums.size()+1)/2;
+      }
+        int sum=0;
+        int ans=nums[mid];
+  
+        for(auto it:nums){
+          sum+=abs(it-ans);
         }
-        
-        return min(ans1,ans2);
+        return sum;
     }
 };
