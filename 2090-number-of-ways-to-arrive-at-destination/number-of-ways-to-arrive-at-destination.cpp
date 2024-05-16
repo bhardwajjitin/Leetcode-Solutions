@@ -16,7 +16,7 @@ public:
         ways[0]=1;
         pq.push({0,0});
         while(!pq.empty()){
-           long long dis=pq.top().first;
+            long long dis=pq.top().first;
             long long node=pq.top().second;
             pq.pop();
             for(auto it:adjlist[node]){
