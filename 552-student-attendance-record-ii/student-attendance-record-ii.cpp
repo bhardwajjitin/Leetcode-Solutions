@@ -20,7 +20,30 @@ class Solution {
     }
 public:
     int checkRecord(int n) {
-        vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(3,vector<int>(4,-1)));
-        return solve(n,0,0,dp)%mod;
+        // vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(3,vector<int>(4,-1)));
+        // return solve(n,0,0,dp)%mod;
+// tabulation
+        vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(3,vector<int>(4,1)));
+        for(int i=0;i<=n;i++){
+          for(int j=0;j<2;j++){
+            dp[i][j][3]=0;
+          }
+        }
+        for(int i=0;i<=n;i++){
+          for(int j=0;j<3;j++){
+            dp[i][2][j]=0;
+          }
+        }
+        for(int i=1;i<=n;i++){
+          for(int a=0;a<=1;a++){
+            for(int l=0;l<=2;l++){
+              long long first=dp[i-1][a+1][0];
+              long long second=dp[i-1][a][l+1];
+              long long third=dp[i-1][a][0];
+              dp[i][a][l]=(first+second+third)%mod;
+            }
+          }
+        }
+        return dp[n][0][0];
     }
 };
