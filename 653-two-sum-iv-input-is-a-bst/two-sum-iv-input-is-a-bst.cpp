@@ -12,6 +12,7 @@
 class Solution {
 public:
     void traverse(TreeNode* root , unordered_map<int,int>&valuesTillNow , int k , bool& ans){
+        if(ans)return;
         if(root == NULL)return;
         traverse(root->left , valuesTillNow , k,ans);
         if(valuesTillNow.find((k-root->val)) != valuesTillNow.end())ans = true;
