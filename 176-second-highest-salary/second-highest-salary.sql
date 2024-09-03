@@ -1,2 +1,2 @@
 # Write your MySQL query statement below
-select max(salary) as SecondHighestSalary from Employee where salary !=(select max(salary) from Employee);
+Select Max(Salary) as SecondHighestSalary from Employee where Salary !=(Select Max(Salary) from Employee);
