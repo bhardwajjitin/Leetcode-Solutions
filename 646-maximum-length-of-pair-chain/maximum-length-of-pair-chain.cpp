@@ -27,7 +27,6 @@ public:
                 dp[i][j+1]=max(pick,notpick);
             }
         }
-       
         return dp[0][0];
     }
 };
