@@ -10,7 +10,6 @@ public:
             cnt++;
         }
         int remainder=cnt%modulo;
-        remainder=(remainder+modulo)%modulo;
         int target=(remainder + modulo - k)%modulo;
         if(umap.find(target)!=umap.end()){
             ans+=umap[target];
