@@ -10,16 +10,16 @@ public:
         }
         sort(arr.begin(),arr.end());
         int cnt=0;
+        int start=0;
         int last=0;
-        int lastmaxi=0;
         int i=0;
-        while (last<n) {
-            while (i<arr.size() && arr[i].first<=last) {
-                lastmaxi=max(lastmaxi, arr[i].second);
+        while(start<n) {
+            while (i<arr.size() && arr[i].first<=start) {
+                last=max(last,arr[i].second);
                 i++;
             }
-            if (lastmaxi==last) return -1;
-            last=lastmaxi;
+            if (last==start) return -1;
+            start=last;
             cnt++;
         }
 
