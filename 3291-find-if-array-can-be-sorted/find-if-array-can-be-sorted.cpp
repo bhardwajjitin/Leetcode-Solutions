@@ -12,7 +12,7 @@ public:
         for (int times = 0; times < nums.size(); times++) {
             int i = 0;
             int j = 1;
-            while (j < nums.size()) {
+            while (j < nums.size()-times) {
                 if (nums[i] > nums[j]) {
                     if(countsetbits(nums[i]) == countsetbits(nums[j]))
                     swap(nums[i], nums[j]);
