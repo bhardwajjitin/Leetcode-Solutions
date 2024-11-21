@@ -9,21 +9,15 @@ public:
         int k=m-1;
         while(j>=0 && k>=0){
             while(k>=0 && j>=0 && nums2[j]>=nums1[k]){
-                nums1[i]=nums2[j];
-                i--;
-                j--;
+                nums1[i--]=nums2[j--];
             }
             while(j>=0 && k>=0 && nums1[k]>nums2[j]){
-                 nums1[i]=nums1[k];
-                 i--;
-                 nums1[k]=0;
-                 k--;
+                 nums1[i--]=nums1[k];
+                 nums1[k--]=0;
             }
         }
         while(j>=0){
-            nums1[i]=nums2[j];
-            i--;
-            j--;
+            nums1[i--]=nums2[j--];
         }
     }
 };
