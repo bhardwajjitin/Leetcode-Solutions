@@ -1,23 +1,37 @@
 class Solution {
 public:
     int isPrefixOfWord(string sentence, string searchWord) {
-      string temp="";
-      int cnt=0;
-        for(int i=0;i<sentence.size();i++){
-          if(sentence[i]!=' '){
-            temp+=sentence[i];
-          }
-          else{
-            cnt++;
-            if(temp.starts_with(searchWord)){
-              return cnt;
+        string temp = "";
+        int k=1;
+        for (int i = 0; i < sentence.size(); i++) {
+            if (sentence[i] == ' ') {
+                bool flag = true;
+                if(searchWord.size()<=temp.size()){
+                for (int j = 0; j < min(searchWord.size(), temp.size()); j++) {
+                    if (searchWord[j] != temp[j]) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag)
+                    return k;
+                }
+                temp = "";
+                k++;
+            } else {
+                temp += sentence[i];
             }
-            temp="";
-          }
         }
-        if(temp.starts_with(searchWord)){
-            cnt++;
-            return cnt;
+        if(searchWord.size()<=temp.size()){
+        bool flag = true;
+        for (int j = 0; j < min(searchWord.size(), temp.size()); j++) {
+            if (searchWord[j] != temp[j]) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag)
+            return k;
         }
         return -1;
     }
