@@ -48,9 +48,9 @@ public:
         for(int i=low;i<=high;i++){
             int getlowind=blackbox(lower_limit,i);
             int gethighind=whitebox(upper_limit,i);
-            if(getlowind>=gethighind){
-                int temp=getlowind-gethighind+1;
-                maxi=max(maxi,temp);
+            if(getlowind!=-1 && gethighind!=-1){
+            int temp=getlowind-gethighind+1;
+            maxi=max(maxi,temp);
             }
         }
         return maxi;
