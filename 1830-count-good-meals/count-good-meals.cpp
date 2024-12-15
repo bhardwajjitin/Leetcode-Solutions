@@ -1,7 +1,7 @@
 class Solution {
 public:
     int countPairs(vector<int>& deli) {
-        map<long long,long long>umap,occur;
+        unordered_map<long long,long long>umap,occur;
         for(auto it:deli){
             umap[it]++;
         }
