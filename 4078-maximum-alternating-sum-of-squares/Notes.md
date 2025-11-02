@@ -1,0 +1,1 @@
+<h2>maximum-alternating-sum-of-squares Notes</h2><hr>[ Time taken: 5 d 14 hrs 8 m 34 s ]
