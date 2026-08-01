@@ -18,8 +18,24 @@ class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
         int n=coins.size();
-        vector<vector<int>>dp(n,vector<int>(amount+1,-1));
-        int ans=solve(0,coins,amount,dp);
-        return ans==1e5?-1:ans;
+        vector<vector<int>>dp(n,vector<int>(amount+1,0));
+
+        // int ans=solve(0,coins,amount,dp);
+        // return ans==1e5?-1:ans;
+        
+      for(int i = n - 1; i >= 0; i--) {
+            for(int j = 1; j <= amount; j++) {
+
+                int pick = 1e5;
+                if(j >= coins[i] && dp[i][j - coins[i]] != 1e5)
+                    pick = dp[i][j - coins[i]] + 1;
+
+                int not_pick = (i + 1 < n) ? dp[i + 1][j] : 1e5;
+
+                dp[i][j] = min(pick, not_pick);
+            }
+        }
+
+        return dp[0][amount] == 1e5 ? -1 : dp[0][amount];
     }
 };
